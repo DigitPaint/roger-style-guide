@@ -40,7 +40,7 @@ the MAJOR.MINOR.PATCH format.
 
 - Update version number if applicable.
 
-- The most resent release is on top. Release date is added on release.
+- The most recent release is on top. Release date is added on release.
   ```
     Release: 1.0.1 (xx-xx-xxxx)
     -----------------------------
@@ -77,72 +77,76 @@ the MAJOR.MINOR.PATCH format.
 
 ## Partials
 
+> Don't make an applications of the mockup.
+
+- Prevent partials with many variables for configurating.
+
+  Consider:
+
+    - the necessity of the configuration
+    - the alternative of a separate partial
+
+- Also restrict the number of variables within the partial.
+
 ### Loading partials
 
-- Conform with the Ruby Style Guide.
+- Load partials conform with the Ruby Style Guide.
   ```erb
-    # bad
-    <%=partial 'elements/save-bar' %>
-
     # good
+    <%= partial "elements/save-bar" %>
+
+    # bad
+    <%=partial "elements/save-bar" %>
+
+    # bad
     <%= partial 'elements/save-bar' %>
   ```
 
 ### Define variables
 
+- Keep the Ruby Style Guide in mind.
+
 - At the top of the partial, all (config) variables should get a default.
   ```erb
+    # good
     <%
-      agenda_items = false if agenda_items.nil?
-      group = true if group.nil?
+      with_image = false unless defined?(with_image)
+      agenda_items = 5 unless defined?(agenda_items)
       ...
     %>
 
-    ...
-  ```
-  Conform with the Ruby Style Guide.
-  ```erb
     # bad
     <%
-    agenda_items = false if agenda_items.nil?
-    group = true if group.nil?
+    with_image = false unless defined?(with_image)
+    agenda_items = 5 unless defined?(agenda_items)
     ...
     %>
 
     # bad
-    <% agenda_items = false if agenda_items.nil? %>
-    <% group = true if group.nil? %>
+    <% with_image = false unless defined?(with_image) %>
+    <% agenda_items = 5 unless defined?(agenda_items) %>
     ...
   ```
 
-- Set the de default with:
+- Set the default.
   ```ruby
     # good
-    agenda_items = false if agenda_items.nil?
-  ```
-
-  `if` is preferred, compared to `unless`.
-  ```ruby
-    # bad
-    agenda_items = false unless agenda_items.defined?
+    with_image = false unless defined?(with_image)
+    with_link = true unless defined?(with_link)
+    agenda_items = 5 unless defined?(agenda_items)
 
     # bad
-    agenda_items = false unless agenda_items == true
+    with_image = false unless with_image.defined?
 
     # bad
-    agenda_items = false unless defined?(agenda_items)
-  ```
+    with_image = false unless with_image == true
 
-  Conform with the Ruby Style Guide.
+    # bad
+    with_image = false if with_image.nil?
 
-  > Don't use ||= to initialize boolean variables.
-
-  ```ruby
     # bad
     agenda_items ||= false
-  ```
-  The following is devious.
-  ```ruy
+
     # bad
     agenda_items = defined?(agenda_items) ? agenda_items : false
   ```
@@ -153,6 +157,11 @@ the MAJOR.MINOR.PATCH format.
   ```erb
     # good
     <% if with_image %>
+      <span class="show-image"></span>
+    <% end %>
+
+    # good
+    <% if agenda_items > 4 %>
       <span class="show-image"></span>
     <% end %>
 
