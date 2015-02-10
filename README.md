@@ -19,7 +19,8 @@ Futhermore the changelog has to be up-to-date.
 
 ### Intern
 
-Also projects with both front- and back-end done by Digitpaint, should be release with an updated changelog and version tag.
+Projects with both front- and back-end done by Digitpaint,
+should be released with an updated changelog and version tag.
 
 ### Version
 
@@ -30,7 +31,8 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 1. MINOR version when you add functionality in a backwards-compatible manner, and
 1. PATCH version when you make backwards-compatible bug fixes.
 
-Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+Additional labels for pre-release and build metadata are available as extensions to
+the MAJOR.MINOR.PATCH format.
 
 ### Changelog
 
@@ -119,7 +121,7 @@ Additional labels for pre-release and build metadata are available as extensions
     agenda_items = false if agenda_items.nil?
   ```
 
-  `if` is preferred, compared to `unless`
+  `if` is preferred, compared to `unless`.
   ```ruby
     # bad
     agenda_items = false unless agenda_items.defined?
@@ -133,15 +135,13 @@ Additional labels for pre-release and build metadata are available as extensions
 
   Conform with the Ruby Style Guide.
 
-  > Use ||= freely to initialize variables.
-  >
   > Don't use ||= to initialize boolean variables.
 
   ```ruby
     # bad
     agenda_items ||= false
   ```
-  The following is devious:
+  The following is devious.
   ```ruy
     # bad
     agenda_items = defined?(agenda_items) ? agenda_items : false
