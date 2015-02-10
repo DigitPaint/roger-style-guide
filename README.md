@@ -13,11 +13,11 @@ This is Digitpaint's Roger Style Guide.
 
 ## Release
 
-Every release should have it's own version number.
+Every release should have its own version number.
 Add a git tag with the version number (eg. `v4.8.11`).
-Futhermore the changelog has to be up-to-date.
+Futhermore, the changelog has to be up-to-date.
 
-### Intern
+### Internal
 
 Projects with both front- and back-end done by Digitpaint,
 should be released with an updated changelog and version tag.
@@ -27,9 +27,10 @@ should be released with an updated changelog and version tag.
 Use Semantic Versioning, [SemVer](http://semver.org/).
 
 Given a version number MAJOR.MINOR.PATCH, increment the:
+
 1. MAJOR version when you make incompatible API changes,
-2. MINOR version when you add functionality in a backwards-compatible manner, and
-3. PATCH version when you make backwards-compatible bug fixes.
+1. MINOR version when you add functionality in a backwards-compatible manner, and
+1. PATCH version when you make backwards-compatible bug fixes.
 
 Additional labels for pre-release and build metadata are available as extensions to
 the MAJOR.MINOR.PATCH format.
@@ -77,20 +78,22 @@ the MAJOR.MINOR.PATCH format.
 
 ## Partials
 
-> Don't make an applications of the mockup.
+> Don't turn the mockup into an application.
 
-- Prevent partials with many variables for configurating.
+- Keep the Ruby Style Guide in mind.
+
+- Do not create partials with too many variables for configuration.
 
   Consider:
 
     - the necessity of the configuration
     - the alternative of a separate partial
 
-- Also restrict the number of variables within the partial.
+- Also restrict the total number of variables within the partial.
 
 ### Loading partials
 
-- Load partials conform with the Ruby Style Guide.
+- Load partials in accordance with the Ruby Style Guide.
   ```erb
     # good
     <%= partial "elements/save-bar" %>
@@ -103,8 +106,6 @@ the MAJOR.MINOR.PATCH format.
   ```
 
 ### Define variables
-
-- Keep the Ruby Style Guide in mind.
 
 - At the top of the partial, all (config) variables should get a default.
   ```erb
@@ -153,7 +154,8 @@ the MAJOR.MINOR.PATCH format.
 
 ### Inline use of variables
 
-- Variables are defined at the top of partial. Don't check for it!
+- Variables are defined at the top of a partial. `defined?` etc. checks are
+unnecessary.
   ```erb
     # good
     <% if with_image %>
