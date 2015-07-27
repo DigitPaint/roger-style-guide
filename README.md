@@ -111,9 +111,9 @@ the MAJOR.MINOR.PATCH format.
   ```erb
     # good
     <%
-      with_image = false unless defined?(with_image)
-      agenda_items = 5 unless defined?(agenda_items)
-      ...
+    with_image ||= false
+    agenda_items ||= 5
+    ...
     %>
 
     # bad
@@ -132,6 +132,11 @@ the MAJOR.MINOR.PATCH format.
 - Set the default.
   ```ruby
     # good
+    agendamage ||= false
+    with_link ||= true
+    agenda_items ||= 5
+    
+    # bad
     with_image = false unless defined?(with_image)
     with_link = true unless defined?(with_link)
     agenda_items = 5 unless defined?(agenda_items)
@@ -144,9 +149,6 @@ the MAJOR.MINOR.PATCH format.
 
     # bad
     with_image = false if with_image.nil?
-
-    # bad
-    agenda_items ||= false
 
     # bad
     agenda_items = defined?(agenda_items) ? agenda_items : false
